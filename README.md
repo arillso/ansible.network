@@ -4,6 +4,8 @@
 
 ## Description
 
+This role manages network settings under Linux and Windows.
+
 ## Installation
 
 ```bash
@@ -14,11 +16,6 @@ ansible-galaxy install arillso.network
 
 ## Role Variables
 
-| Variable             | Default     | Comments (type)                                   |
-| :---                 | :---        | :---                                              |
-| | | |
-| | | |
-
 ## Dependencies
 
 ## Example Playbook
@@ -26,14 +23,14 @@ ansible-galaxy install arillso.network
 ```yml
 - hosts: all
   roles:
-     - arillso.network
+    - arillso.network
 ```
 
 ## Changelog
 
 ## Author
 
-* [Simon Bärlocher](https://sbaerlocher.ch)
+- [Simon Bärlocher](https://sbaerlocher.ch)
 
 ## License
 

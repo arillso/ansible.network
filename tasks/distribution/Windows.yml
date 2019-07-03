@@ -1,2 +1,7 @@
 ---
 # tasks file for arillso.network
+
+- name: 'windows : Disable Adapter Component'
+  win_shell: Disable-NetAdapterBinding -Name {{ item.connection_name }} -ComponentID ms_tcpip6 -PassThru
+  with_items:
+    - '{{ ansible_interfaces }}'
