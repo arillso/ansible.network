@@ -2,9 +2,13 @@
 # tasks file for arillso.network
 
 - name: 'windows : Disable Adapter Component'
-  win_shell: Disable-NetAdapterBinding -Name {{ item.connection_name }} -ComponentID ms_tcpip6 -PassThru
+  win_shell: >
+    '{{ command }} -Name {{ item.connection_name }} -ComponentID {{ com_id }}'
   with_items:
     - '{{ ansible_interfaces }}'
+  vars:
+    command: 'Disable-NetAdapterBinding'
+    com_id: 'ms_tcpip6 -PassThru'
 
 - name: 'windows : include tasks to install custom CA certificates'
   include_tasks: Windows/smb.yml
@@ -18,14 +22,18 @@
     key: HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters
     value: requiresecuritysignature
     datatype: dword
-    data: "{{ '00000001' if network_require_security_signature_enabled else '00000000' }}"
+    data: "{{ '00000001' if contional else '00000000' }}"
+  vars:
+    contional: '{{ network_require_security_signature_enabled }}'
 
 - name: 'windows : Enable SmbServerNameHardeningLevel - SPN validation'
   win_regedit:
     key: HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters
     value: SmbServerNameHardeningLevel
     datatype: dword
-    data: "{{ '00000001' if network_smb_server_name_hardeninglevel_enabled else '00000000' }}"
+    data: "{{ '00000001' if contional else '00000000' }}"
+  vars:
+    contional: '{{ network_require_security_signature_enabled }}'
 
 # FIXME! ansible 2.3+: https://github.com/ansible/ansible/issues/18885
 - name: 'windows : Prevent Anonymous Shares Access'

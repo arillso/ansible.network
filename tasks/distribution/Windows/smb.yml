@@ -1,9 +1,12 @@
 ---
 # tasks file for arillso.network
 
-- name: "windows :  {{ 'Enable' if network_loop_smb_item.enable else 'Disable' }} {{ network_loop_smb_item.value }}"
+- name: "windows : {{ 'Enable' if loop_e else 'Disable' }} {{ loop_v }}"
   win_regedit:
     key: HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters
-    value: '{{ network_loop_smb_item.value }}'
+    value: '{{ loop_v }}'
     datatype: dword
-    data: "{{ '00000001' if network_loop_smb_item.enable else '00000000' }}"
+    data: "{{ '00000001' if loop_e else '00000000' }}"
+  vars:
+    loop_e: '{{ network_loop_smb_item.enable }}'
+    loop_v: '{{ network_loop_smb_item.value }}'
