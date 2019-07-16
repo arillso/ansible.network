@@ -4,7 +4,7 @@
 
 ## Description
 
-This role will make sure that the initial network configuration is properly setup using NetworkManager for Linux and NetAdapter for Windows is set up correctly. Additionally it can apply network-related Kernel parameters via sysctl in Linux.
+This role ensures that the initial network configuration is properly setup using NetworkManager for Linux and NetAdapter for Windows. Additionally it can apply network-related Kernel parameters via sysctl in Linux.
 
 ## Installation
 
