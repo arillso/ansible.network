@@ -1,10 +1,10 @@
 # Ansible Role: network
 
-[![Build Status](https://img.shields.io/travis/arillso/ansible.network.svg?branch=master&style=popout-square)](https://travis-ci.org/arillso/ansible.network) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-network-blue.svg?style=popout-square)](https://galaxy.ansible.com/arillso/network) [![Ansible Role](https://img.shields.io/ansible/role/d/id.svg?style=popout-square)](https://galaxy.ansible.com/arillso/network)
+[![Build Status](https://img.shields.io/travis/arillso/ansible.network.svg?branch=master&style=popout-square)](https://travis-ci.org/arillso/ansible.network) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-network-blue.svg?style=popout-square)](https://galaxy.ansible.com/arillso/network) [![Ansible Role](https://img.shields.io/ansible/role/d/id.svg?style=popout-square)](https://galaxy.ansible.com/arillso/network)
 
 ## Description
 
-This role manages network settings under Linux and Windows.
+This role will make sure that the initial network configuration is properly setup using NetworkManager for Linux and NetAdapter for Windows is set up correctly. Additionally it can apply network-related Kernel parameters via sysctl in Linux.
 
 ## Installation
 
@@ -38,4 +38,4 @@ This project is under the MIT License. See the [LICENSE](https://sbaerlo.ch/lice
 
 ## Copyright
 
-(c) 2019, Simon Bärlocher
+(c) 2019, Arillso

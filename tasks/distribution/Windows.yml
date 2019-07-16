@@ -5,3 +5,32 @@
   win_shell: Disable-NetAdapterBinding -Name {{ item.connection_name }} -ComponentID ms_tcpip6 -PassThru
   with_items:
     - '{{ ansible_interfaces }}'
+
+- name: 'windows : include tasks to install custom CA certificates'
+  include_tasks: Windows/smb.yml
+  with_items:
+    - '{{ network_smb_protocol }}'
+  loop_control:
+    loop_var: network_loop_smb_item
+
+- name: 'windows : Enable requiresecuritysignature - SMB signature'
+  win_regedit:
+    key: HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters
+    value: requiresecuritysignature
+    datatype: dword
+    data: "{{ '00000001' if network_require_security_signature_enabled else '00000000' }}"
+
+- name: 'windows : Enable SmbServerNameHardeningLevel - SPN validation'
+  win_regedit:
+    key: HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters
+    value: SmbServerNameHardeningLevel
+    datatype: dword
+    data: "{{ '00000001' if network_smb_server_name_hardeninglevel_enabled else '00000000' }}"
+
+# FIXME! ansible 2.3+: https://github.com/ansible/ansible/issues/18885
+- name: 'windows : Prevent Anonymous Shares Access'
+  win_regedit:
+    key: HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters
+    value: NullSessionShares
+    datatype: multistring
+    data: ''
