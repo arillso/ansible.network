@@ -5,6 +5,13 @@ and [human-readable changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## 1.0.0
 
+### Changed
+
+- Update Readme
+- Fixed Metadata Score
+
+## 1.0.0
+
 ### Added
 
 - Initial release
